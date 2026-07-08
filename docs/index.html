@@ -41,12 +41,15 @@
   }
   .mono { font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace; }
 
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
   header.hero { padding: 88px 0 56px; }
-  .hero-top { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
-  .hero-top img { width: 40px; height: 40px; }
-  .hero-top span { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .hero-top { display: flex; align-items: center; gap: 18px; margin-bottom: 32px; }
+  .hero-top img { width: 64px; height: 64px; }
+  .hero-top span { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
 
   h1 {
     font-size: clamp(30px, 5vw, 42px);
@@ -73,6 +76,7 @@
   }
   .btn.primary { background: var(--accent); color: #ffffff; }
   .btn.ghost { border-color: var(--line); color: var(--ink); }
+  .btn:hover { text-decoration: none; }
 
   section { padding: 48px 0; border-top: 1px solid var(--line); }
 
@@ -149,6 +153,7 @@
     <div class="cta-row">
       <a class="btn primary" href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Request a feature</a>
       <a class="btn ghost" href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Report an issue</a>
+      <a class="btn ghost" href="https://github.com/mikehc/cleanbygoal-extension/issues">Issue tracker</a>
       <a class="btn ghost" href="privacy.html">Privacy policy</a>
     </div>
   </header>
@@ -211,6 +216,7 @@
     <div class="links">
       <a href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Request a feature</a>
       <a href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Report an issue</a>
+      <a href="https://github.com/mikehc/cleanbygoal-extension/issues">Issue tracker</a>
       <a href="privacy.html">Privacy policy</a>
     </div>
     <p class="copy">CleanByGoal</p>
