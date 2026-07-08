@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — CleanByGoal</title>
+<link rel="icon" href="assets/logo.png">
+<style>
+  :root {
+    --paper: #eef0ec;
+    --ink: #1a211e;
+    --ink-soft: #565f5a;
+    --line: #d7dbd4;
+    --card: #f7f8f5;
+    --accent: #0e6b5c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #101513;
+      --ink: #e7eae6;
+      --ink-soft: #9aa39d;
+      --line: #262e2a;
+      --card: #161c19;
+      --accent: #35c7ae;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 64px 24px 100px; }
+  .back { font-size: 13.5px; color: var(--ink-soft); text-decoration: none; }
+  .back:hover { color: var(--accent); }
+  h1 { font-size: 28px; margin: 24px 0 4px; letter-spacing: -0.01em; }
+  .updated { font-size: 13px; color: var(--ink-soft); margin: 0 0 40px; }
+  h2 { font-size: 16px; margin: 40px 0 12px; }
+  p, li { font-size: 15px; color: var(--ink); }
+  ul { padding-left: 20px; }
+  .table {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .row { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+  .row:first-child { border-top: none; background: var(--card); font-weight: 600; font-size: 13px; }
+  .row div { padding: 10px 14px; font-size: 13.5px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← CleanByGoal</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated July 2026</p>
+
+  <p>
+    CleanByGoal is a browser extension that closes tabs once the task they represent is finished
+    (a merged GitHub PR, a closed GitLab MR, a Jira issue marked Done, an archived Trello card),
+    and separately closes duplicate tabs. This page explains exactly what the extension does and
+    does not do with your data.
+  </p>
+
+  <h2>The short version</h2>
+  <p>
+    Nothing CleanByGoal reads is ever sent anywhere. There is no external server. There is no
+    analytics or tracking of any kind. Every check happens locally in your browser, using the page
+    you already have open and the session you're already logged into.
+  </p>
+
+  <h2>What the extension accesses, and why</h2>
+  <div class="table">
+    <div class="row"><div>Data</div><div>Why</div></div>
+    <div class="row"><div>Open tabs' URLs and titles</div><div>To detect duplicate tabs of the same page, and to match tabs against the site rules you've enabled (GitHub, GitLab, Jira, Trello)</div></div>
+    <div class="row"><div>Page content on github.com, gitlab.com, *.atlassian.net, trello.com</div><div>To read whether the PR/MR/issue/card that tab represents is complete, so the tab can be closed automatically</div></div>
+    <div class="row"><div>Your existing logged-in session on those sites</div><div>Used only to make the same read-only check above (via the site's own page or same-origin API) — the extension never sees your password or auth tokens</div></div>
+  </div>
+
+  <h2>Where things are stored</h2>
+  <p>
+    Your settings (which rules are enabled, auto-run interval, custom domains) are stored in Chrome's
+    built-in <code>storage.sync</code>, which is how Chrome itself keeps your settings synced across
+    your signed-in browsers — CleanByGoal doesn't operate any storage of its own. Scan history (what
+    was closed and why) is stored locally on your device via <code>storage.local</code>. Neither is
+    ever transmitted to us or anyone else, because there is no server to send it to.
+  </p>
+
+  <h2>What CleanByGoal does not do</h2>
+  <ul>
+    <li>Does not send any data to an external server — there isn't one</li>
+    <li>Does not use analytics, telemetry, or crash reporting</li>
+    <li>Does not sell or share data with third parties</li>
+    <li>Does not use your data for advertising</li>
+    <li>Does not read or store your passwords or authentication tokens</li>
+    <li>Does not access sites outside the ones you've explicitly enabled or added</li>
+  </ul>
+
+  <h2>Self-hosted GitLab / Jira domains</h2>
+  <p>
+    If you add a self-hosted GitLab or Jira Server/Data Center domain in Options, Chrome shows you
+    its own permission prompt scoped to that exact domain before the extension can read anything
+    there. This is never requested silently or by default.
+  </p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If this policy changes, this page will be updated and the "Last updated" date above will
+    reflect it.
+  </p>
+
+  <h2>Questions</h2>
+  <p>
+    Open an issue at
+    <a href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">github.com/mikehc/cleanbygoal-extension</a>.
+  </p>
+</div>
+</body>
+</html>

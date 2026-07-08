@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CleanByGoal — close tabs once the work is actually done</title>
+<meta name="description" content="CleanByGoal closes browser tabs once the PR, ticket, or card they track is done, and clears out duplicates. Nothing ever leaves your browser.">
+<link rel="icon" href="assets/logo.png">
+<style>
+  :root {
+    --paper: #eef0ec;
+    --ink: #1a211e;
+    --ink-soft: #565f5a;
+    --line: #d7dbd4;
+    --card: #f7f8f5;
+    --accent: #0e6b5c;
+    --accent-soft: #d8ece7;
+    --shadow: rgba(20, 30, 26, 0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #101513;
+      --ink: #e7eae6;
+      --ink-soft: #9aa39d;
+      --line: #262e2a;
+      --card: #161c19;
+      --accent: #35c7ae;
+      --accent-soft: #16332c;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .mono { font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero { padding: 88px 0 56px; }
+  .hero-top { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .hero-top img { width: 40px; height: 40px; }
+  .hero-top span { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+
+  h1 {
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.18;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+  h1 .accent { color: var(--accent); }
+
+  .lede { font-size: 17px; color: var(--ink-soft); max-width: 56ch; margin: 0 0 32px; }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .btn.primary { background: var(--accent); color: #ffffff; }
+  .btn.ghost { border-color: var(--line); color: var(--ink); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  h2 { font-size: 22px; margin: 0 0 20px; text-wrap: balance; }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .rule-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .rule-card .name { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .rule-card .desc { font-size: 13.5px; color: var(--ink-soft); }
+
+  .privacy-callout {
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 28px 28px;
+  }
+  .privacy-callout h2 { margin-top: 0; }
+  .privacy-callout p { margin: 0; color: var(--ink); font-size: 15px; max-width: 58ch; }
+
+  .shots { display: flex; flex-direction: column; gap: 22px; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px var(--shadow);
+    display: block;
+  }
+  .shots figcaption {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  footer { padding: 40px 0 80px; }
+  footer .links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
+  footer .links a { color: var(--ink-soft); text-decoration: none; }
+  footer .links a:hover { color: var(--accent); }
+  footer .copy { margin-top: 20px; font-size: 12.5px; color: var(--ink-soft); }
+
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top">
+      <img src="assets/logo.png" alt="">
+      <span>CleanByGoal</span>
+    </div>
+    <h1>Closes tabs once the work behind them is <span class="accent">actually done</span>.</h1>
+    <p class="lede">
+      A merged GitHub PR. A closed GitLab MR. A Jira ticket marked Done. An archived Trello card.
+      CleanByGoal checks the tabs you already have open and closes the ones whose task is finished —
+      plus clears out duplicates — so your tab bar stops tracking work you already finished.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Request a feature</a>
+      <a class="btn ghost" href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Report an issue</a>
+      <a class="btn ghost" href="privacy.html">Privacy policy</a>
+    </div>
+  </header>
+
+  <section id="rules">
+    <p class="eyebrow mono">What it checks</p>
+    <h2>Five rules, each one optional</h2>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="name">GitHub Pull Request</div>
+        <div class="desc">Closes the tab once the PR is merged or closed.</div>
+      </div>
+      <div class="rule-card">
+        <div class="name">GitLab Merge Request</div>
+        <div class="desc">Closes the tab once the MR is merged or closed.</div>
+      </div>
+      <div class="rule-card">
+        <div class="name">Jira Issue</div>
+        <div class="desc">Closes the tab once the issue is Done/Closed — or a custom status you define.</div>
+      </div>
+      <div class="rule-card">
+        <div class="name">Trello Card</div>
+        <div class="desc">Closes the tab once the card is archived.</div>
+      </div>
+      <div class="rule-card">
+        <div class="name">Duplicate tabs</div>
+        <div class="desc">Keeps the most recently used copy of a page, closes the rest.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="privacy-callout">
+      <h2>Nothing ever leaves your browser</h2>
+      <p>
+        Every check happens locally, using the page you already have open and the session you're
+        already logged into. There's no external server, no analytics, no account to create.
+        Settings and history are stored only in your own browser profile.
+        <a href="privacy.html">Read the full privacy policy →</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="screenshots">
+    <p class="eyebrow mono">In use</p>
+    <h2>What a clean run looks like</h2>
+    <div class="shots">
+      <figure>
+        <img src="assets/shot-popup.png" alt="CleanByGoal popup showing a completed run: closed 4 tabs, 3 goals and 1 duplicate">
+        <figcaption>Click "Clean Now," and the popup shows exactly what happened.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/shot-summary.png" alt="CleanByGoal summary page listing each closed tab, its rule, and why it closed">
+        <figcaption>The summary page lists every closed tab, which rule closed it, and why.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <div class="links">
+      <a href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Request a feature</a>
+      <a href="https://github.com/mikehc/cleanbygoal-extension/issues/new/choose">Report an issue</a>
+      <a href="privacy.html">Privacy policy</a>
+    </div>
+    <p class="copy">CleanByGoal</p>
+  </footer>
+</div>
+
+</body>
+</html>
